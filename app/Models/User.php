@@ -7,6 +7,7 @@ use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Role;
 // use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -18,10 +19,21 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    // protected $fillable = [
+    //     'name',
+    //     'email',
+    //     'password',
+    // ];
+
+    // New Design
     protected $fillable = [
-        'name',
+        'firstName',
+        'lastName',
         'email',
         'password',
+        'position',
+        'avatar',
+        'roleId'
     ];
 
     /**
@@ -42,4 +54,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // define relationship with role
+    public function role() {
+        return $this->belongsTo(Role::class, 'roleId');
+    }
 }

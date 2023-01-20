@@ -35,9 +35,16 @@ class AuthenticationController extends Controller
             $response = [
                 'data' => [
                     'user' => $user,
-                    'access_token' => $token
+                    'access_token' => $token,
+                    'status' => 1,
+                    'message' => 'เข้าสู่ระบบสำเร็จ'
                 ]
             ];
+
+            // $response = [
+            //     'user' => $user,
+            //     'access_token' => $token
+            // ];
 
             // $response = [
             //     'id' => $user->id,
@@ -47,11 +54,12 @@ class AuthenticationController extends Controller
             //     'updated_at' => $user->updated_at,
             //     'token' => $token
             // ];
-    
+
             return response()->json($response, 200);
             // return $response;
         } else {
-            return response()->json(['message' => 'Unauthenticated!'], 401);
+            return response()->json(['message' => 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง!!!'], 401);
+            // return response()->json(['message' => 'Unauthenticated!!!'], 401);
         }
     }
 

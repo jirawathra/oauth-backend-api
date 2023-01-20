@@ -17,11 +17,15 @@ class UserTableSeeder extends Seeder
     {
         // intial admin, user
         $admin = User::create([
-            'name' => 'JL',
+            'firstName' => 'J',
+            'lastName' => 'L',
             'email' => 'jl@mandimark.com',
-            'password' => bcrypt('password@1')
+            'password' => bcrypt('password@1'),
+            'position' => 'Full-Stack Developer',
+            'roleId' => 1,
+            'avatar' => ''
         ]);
 
-        $user = User::factory(5)->create();
+        $user = User::factory(19)->create();
     }
 }
