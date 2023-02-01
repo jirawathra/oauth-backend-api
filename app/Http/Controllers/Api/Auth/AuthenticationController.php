@@ -29,31 +29,53 @@ class AuthenticationController extends Controller
             // $user = Auth::user();
             // dd($user);
             // create token
-            // $token = $user->createToken($user->name);
-            $token = $user->createToken('access_token');
+            $token = $user->createToken($user->name);
+            // dd($user->name);
+            // $token = $user->createToken('access_token');
             // dd($token);
-            $response = [
-                'data' => [
-                    'user' => $user,
-                    'access_token' => $token,
-                    'status' => 1,
-                    'message' => 'เข้าสู่ระบบสำเร็จ'
-                ]
-            ];
-
             // $response = [
-            //     'user' => $user,
-            //     'access_token' => $token
+            //     'data' => [
+            //         'user' => $user,
+            //         'access_token' => $token,
+            //         'status' => 1,
+            //         'message' => 'เข้าสู่ระบบสำเร็จ'
+            //     ]
             // ];
 
             // $response = [
+            //     'user' => $user,
+            //     'access_token' => $token,
+            //     'token' => $token->accessToken,
+            //     'token-expires-at' => $token->token->expires_at,
+            //     'status' => 1,
+            //     'message' => 'เข้าสู่ระบบสำเร็จ'
+            // ];
+
+
+            // return response([
             //     'id' => $user->id,
             //     'name' => $user->name,
             //     'email' => $user->email,
             //     'created_at' => $user->created_at,
             //     'updated_at' => $user->updated_at,
-            //     'token' => $token
-            // ];
+            //     'token' => $token->accessToken,
+            //     'token-expires-at' => $token->token->expires_at,
+            //     'status' => 1,
+            //     'message' => 'เข้าสู่ระบบสำเร็จ'
+            // ], 200);
+
+            $response = [
+                'id' => $user->id,
+                'firstName' => $user->firstName,
+                'lastName' => $user->lastName,
+                'email' => $user->email,
+                'created_at' => $user->created_at,
+                'updated_at' => $user->updated_at,
+                'token' => $token->accessToken,
+                'token_expires_at' => $token->token->expires_at,
+                'status' => 1,
+                'message' => 'เข้าสู่ระบบสำเร็จ'
+            ];
 
             return response()->json($response, 200);
             // return $response;

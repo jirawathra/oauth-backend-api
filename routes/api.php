@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Auth\AuthenticationController;
+use App\Http\Controllers\Api\Auth\ForgetPasswordController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,4 +34,5 @@ Route::get('users', function () {
 
 Route::group(['namespace' => 'Api\Auth'], function () {
     Route::post('/login', [AuthenticationController::class, 'login']);
+    Route::post('/forget-password', [ForgetPasswordController::class, 'forget']);
 });
